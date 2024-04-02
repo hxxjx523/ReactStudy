@@ -14,8 +14,8 @@ function Test(props){
     return <div>
         <ul>
             {
-                arr.map(item =>{
-                    return <li>{item}</li>
+                arr.map((item, index )=>{
+                    return <li>{item} {index}</li>
                 })
             }
         </ul>
