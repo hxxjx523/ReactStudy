@@ -16,20 +16,29 @@ function TodoApp(props){
 
     const handleTodoRemove = index => setTodos(todos => todos.filter((_, todoIndex) => index !== todoIndex ))
 
+    const handleTodostatusToggle = index => setTodos(
+        todos.map((todo, todoIndex) => { 
+            if(index === todoIndex){
+                return { ...todo, completed: !todo.completed}
+            } 
+            return todo;
+        }
+    ))
+
     return <div>
-        <TodoList todos={todos} handleTodoRemove={handleTodoRemove} />
+        <TodoList todos={todos} handleTodoRemove={handleTodoRemove} handleTodostatusToggle={handleTodostatusToggle}/>
         <TodoAdder handleTodoAdd={handleTodoAdd}/>
         
     </div>
 }
 
-function TodoList({todos, handleTodoRemove}){
+function TodoList({todos, handleTodoRemove, handleTodostatusToggle}){
 
     return <div>
         <ul>
         {
             todos.map((todo, index) => {
-                return <TodoItem index={index} todo={todo} handleTodoRemove={handleTodoRemove}/> 
+                return <TodoItem index={index} todo={todo} handleTodoRemove={handleTodoRemove} handleTodostatusToggle={handleTodostatusToggle}/> 
             })
         }
         </ul> 
@@ -37,10 +46,10 @@ function TodoList({todos, handleTodoRemove}){
 
 }
 
-function TodoItem({todo, index, handleTodoRemove}){
+function TodoItem({todo, index, handleTodoRemove, handleTodostatusToggle={handleTodostatusToggle}}){
 
     return <li>
-        {todo.text} <button onClick={() => handleTodoRemove}>❌</button>
+        <span onClick={() => handleTodostatusToggle(index)} style={todo.completed ? {textDecoration: "line-through"} : null}>{todo.text}</span> <button onClick={() => handleTodoRemove(index)}>❌</button>
 
     </li>
 
