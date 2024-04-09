@@ -16,6 +16,8 @@
 // import './component-intermediate/state-study-with-inner-object.js'
 // import './component-intermediate/counter-with-hook-caveat.js'
 // import './component-intermediate/manipulate-list.js'
-import  './component-intermediate/todo-app-demo.js'
+// import  './component-intermediate/todo-app-demo.js'
  
 //  import  './component-intermediate/todo-app-study.js'
+
+import './test/test4.js'
